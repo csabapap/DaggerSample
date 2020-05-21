@@ -1,6 +1,8 @@
 package hu.csabapap.daggersample.di.modules
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -12,6 +14,11 @@ class CoreModule(private val context: Context) {
     @Provides
     fun provideContext(): Context {
         return context
+    }
+
+    @Provides
+    fun provideSharePreferences(context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     @Singleton

@@ -8,10 +8,13 @@ import hu.csabapap.daggersample.di.DaggerAppComponent
 import hu.csabapap.daggersample.di.components.UserComponent
 import hu.csabapap.daggersample.di.modules.CoreModule
 import hu.csabapap.daggersample.di.modules.UserModule
+import javax.inject.Inject
 
 class DaggerExampleApp: Application() {
 
     lateinit var appComponent: AppComponent
+
+    @Inject
     lateinit var preferences: SharedPreferences
     var userComponent: UserComponent? = null
 
@@ -20,8 +23,7 @@ class DaggerExampleApp: Application() {
         appComponent = DaggerAppComponent.builder()
             .coreModule(CoreModule(this))
             .build()
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        appComponent.inject(this)
     }
 
     fun addUserComponent(hasAllViewRight: Boolean): UserComponent {
