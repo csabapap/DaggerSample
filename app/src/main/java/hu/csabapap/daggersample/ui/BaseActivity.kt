@@ -13,4 +13,10 @@ abstract class BaseActivity: AppCompatActivity() {
     protected fun getApp(): DaggerExampleApp {
         return (applicationContext as DaggerExampleApp)
     }
+
+    val activityComponent by lazy {
+        getAppComponent().activityComponent()
+            .activity(this)
+            .build()
+    }
 }

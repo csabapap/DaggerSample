@@ -3,10 +3,9 @@ package hu.csabapap.daggersample.di.components
 import dagger.Subcomponent
 import hu.csabapap.daggersample.di.UserScope
 import hu.csabapap.daggersample.di.modules.UserModule
-import hu.csabapap.daggersample.di.modules.UserSubcomponentModule
 
 @UserScope
-@Subcomponent(modules = [UserModule::class, UserSubcomponentModule::class])
+@Subcomponent(modules = [UserModule::class])
 interface UserComponent {
     @Subcomponent.Builder
     interface Builder {
@@ -14,6 +13,5 @@ interface UserComponent {
         fun build(): UserComponent
     }
 
-    fun loggedInComponent(): LoggedInActivityComponent.Factory
-    fun accountComponent(): AccountComponent.Factory
+    fun authenticatedActivityComponent(): AuthenticatedActivityComponent.Builder
 }

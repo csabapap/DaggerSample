@@ -17,14 +17,11 @@ class AccountActivity : AuthenticatedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addUserRelatedComponent()
-        val userComponent = (application as DaggerExampleApp).userComponent
         if (userComponent == null) {
             finish()
             return
         }
-        userComponent.accountComponent().create()
-            .inject(this)
+        authenticatedActivityComponent?.inject(this)
 
         setContentView(R.layout.activity_account)
 

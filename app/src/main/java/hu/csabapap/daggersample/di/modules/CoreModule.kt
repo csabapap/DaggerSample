@@ -27,5 +27,4 @@ class CoreModule(private val context: Context) {
     fun provideGlobalProperties(): String {
         return "app level property"
     }
-
 }

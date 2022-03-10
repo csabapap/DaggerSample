@@ -12,7 +12,4 @@ class PrinterModule {
     fun provideTextToPrint(): String {
         return "apple"
     }
-
-
-
 }

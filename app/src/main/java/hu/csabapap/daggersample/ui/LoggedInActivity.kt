@@ -25,14 +25,11 @@ class LoggedInActivity : AuthenticatedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addUserRelatedComponent()
-        val userComponent = getApp().userComponent
         if (userComponent == null) {
             finish()
             return
         }
-        userComponent.loggedInComponent().create()
-            .inject(this)
+        authenticatedActivityComponent?.inject(this)
         setContentView(R.layout.activity_logged_in)
         textView.text = property
         user_info.text = "User type: $userType"

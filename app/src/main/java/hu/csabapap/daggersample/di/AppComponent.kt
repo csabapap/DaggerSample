@@ -2,14 +2,13 @@ package hu.csabapap.daggersample.di
 
 import dagger.Component
 import hu.csabapap.daggersample.DaggerExampleApp
-import hu.csabapap.daggersample.di.modules.CoreModule
-import hu.csabapap.daggersample.di.components.MainActivityComponent
-import hu.csabapap.daggersample.di.modules.SubcomponentModule
+import hu.csabapap.daggersample.di.components.ActivityComponent
 import hu.csabapap.daggersample.di.components.UserComponent
+import hu.csabapap.daggersample.di.modules.CoreModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CoreModule::class, SubcomponentModule::class])
+@Component(modules = [CoreModule::class])
 interface AppComponent {
     @Component.Builder
     interface Builder {
@@ -18,7 +17,7 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun mainComponent(): MainActivityComponent.Factory
+    fun activityComponent(): ActivityComponent.Builder
     fun userComponent(): UserComponent.Builder
 
     fun inject(app: DaggerExampleApp)
